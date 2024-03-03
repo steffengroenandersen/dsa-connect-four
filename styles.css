@@ -1,0 +1,24 @@
+div {
+  border: 1px red dotted;
+}
+
+.board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.cell {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
