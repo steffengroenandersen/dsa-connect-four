@@ -94,7 +94,6 @@ function addToColumn(col, value) {
 
 function checkForWin() {
   // Check horizontally
-
   for (let row = 0; row < 6; row++) {
     for (let col = 0; col < 4; col++) {
       if (
@@ -112,11 +111,12 @@ function checkForWin() {
   for (let col = 0; col < 7; col++) {
     for (let row = 0; row < 3; row++) {
       //console.log(`board[${row}][${col}]`);
-
+      /*
       console.log(`board[${row}][${col}](${board[row][col]}) !== 0 &&
       board[${row}][${col}](${board[row][col]}) === board[${row} + 1][${col}](${board[row + 1][col]}) &&
       board[${row}][${col}](${board[row][col]}) === board[${row} + 2][${col}](${board[row + 2][col]}) &&
       board[${row}][${col}](${board[row][col]}) === board[${row} + 3][${col}](${board[row + 3][col]})`);
+      */
 
       if (
         board[row][col] !== 0 &&
@@ -128,45 +128,23 @@ function checkForWin() {
       }
     }
   }
-  return false;
 
-  /*
-  for (let row = 0; row < 6; row++) {
+  // Check diagonally
+  for (let row = 5; row > 2; row--) {
     for (let col = 0; col < 4; col++) {
-      console.log(`Checking board[${row}][${col}]`);
-
-      console.log(`
-      board[${row}][${col}] !== 0 &&
-      board[${row}][${col}] === board[${row}][${col} + 1] &&
-      board[${row}][${col}] === board[${row}][${col} + 2] &&
-      board[${row}][${col}] === board[${row}][${col} + 3]`);
+      console.log(`board[${row}][${col}] = ${board[row][col]}`);
 
       if (
         board[row][col] !== 0 &&
-        board[row][col] === board[row][col + 1] &&
-        board[row][col] === board[row][col + 2] &&
-        board[row][col] === board[row][col + 3]
+        board[row][col] === board[row - 1][col + 1] &&
+        board[row][col] === board[row - 2][col + 2] &&
+        board[row][col] === board[row - 3][col + 3]
       ) {
-        return true; // Four consecutive pieces found horizontally
-      }
-    }
-  }
-  
-  // Check vertically
-  for (let row = 0; row < 3; row++) {
-    for (let col = 0; col < 7; col++) {
-      if (
-        board[row][col] !== 0 &&
-        board[row][col] === board[row + 1][col] &&
-        board[row][col] === board[row + 2][col] &&
-        board[row][col] === board[row + 3][col]
-      ) {
-        return true; // Four consecutive pieces found vertically
+        return true;
       }
     }
   }
 
-  // Check diagonally (from top-left to bottom-right)
   for (let row = 0; row < 3; row++) {
     for (let col = 0; col < 4; col++) {
       if (
@@ -175,25 +153,10 @@ function checkForWin() {
         board[row][col] === board[row + 2][col + 2] &&
         board[row][col] === board[row + 3][col + 3]
       ) {
-        return true; // Four consecutive pieces found diagonally (top-left to bottom-right)
+        return true;
       }
     }
   }
 
-  // Check diagonally (from top-right to bottom-left)
-  for (let row = 0; row < 3; row++) {
-    for (let col = 3; col < 7; col++) {
-      if (
-        board[row][col] !== 0 &&
-        board[row][col] === board[row + 1][col - 1] &&
-        board[row][col] === board[row + 2][col - 2] &&
-        board[row][col] === board[row + 3][col - 3]
-      ) {
-        return true; // Four consecutive pieces found diagonally (top-right to bottom-left)
-      }
-    }
-  }
-
-  return false; // No win condition found
-*/
+  return false;
 }
